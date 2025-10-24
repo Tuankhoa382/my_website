@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Thư viện hình ảnh công trình</h2>
+
+{% if images %}
+<div class="gallery">
+    {% for img in images %}
+        <img src="{{ img }}" alt="Công trình {{ loop.index }}">
+    {% endfor %}
+</div>
+{% else %}
+<p>Chưa có hình ảnh nào được tải lên.</p>
+{% endif %}
+{% endblock %}
