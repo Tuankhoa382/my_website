@@ -1,96 +1,59 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title if title else "Công ty Xây dựng ABC" }}</title>
-
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            background-color: #f4f6f8;
-        }
-        header {
-            background-color: #0b3d91;
-            color: white;
-            text-align: center;
-            padding: 25px;
-        }
-        nav {
-            background-color: #004aad;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 12px 24px;
-            font-weight: 600;
-        }
-        nav a:hover {
-            background-color: #0077ff;
-        }
-        footer {
-            background-color: #0b3d91;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 40px;
-        }
-        main {
-            padding: 40px 20px;
-            text-align: center;
-            background-color: white;
-            min-height: 70vh;
-        }
-        .btn {
-            background-color: #004aad;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .btn:hover {
-            background-color: #0077ff;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-        .gallery img {
-            width: 300px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title if title else "Công Ty Xây Dựng Khoa" }}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9b8f54a.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<header>
-    <h1>CÔNG TY TNHH XÂY DỰNG ABC</h1>
-    <p>Chất lượng - Uy tín - Hiện đại</p>
-</header>
+  <!-- HEADER -->
+  <header class="hero">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="/">🏗️ XÂY DỰNG KHOA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Trang chủ</a></li>
+            <li class="nav-item"><a class="nav-link" href="/upload">Tải ảnh</a></li>
+            <li class="nav-item"><a class="nav-link" href="/gallery">Thư viện</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-<nav>
-    <a href="/">Trang chủ</a>
-    <a href="/upload">Tải ảnh công trình</a>
-    <a href="/gallery">Thư viện ảnh</a>
-</nav>
+    <div class="hero-text text-center text-light">
+      <h1 class="fw-bold">KIẾN TẠO CÔNG TRÌNH BỀN VỮNG</h1>
+      <p>Chất lượng – Uy tín – Đẳng cấp trong từng dự án</p>
+      <a href="/gallery" class="btn btn-primary btn-lg mt-3">Xem Dự Án</a>
+    </div>
+  </header>
 
-<main>
+  <!-- MAIN CONTENT -->
+  <main class="container py-5">
     {% block content %}{% endblock %}
-</main>
+  </main>
 
-<footer>
-    © 2025 Công ty TNHH Xây dựng ABC - All Rights Reserved
-</footer>
+  <!-- FOOTER -->
+  <footer class="footer text-center text-light py-3 mt-5">
+    <p>© 2025 Công Ty TNHH Xây Dựng Khoa | Hotline: 0909.123.456 | Email: contact@xaydungkhoa.vn</p>
+  </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.navbar');
+      nav.classList.toggle('scrolled', window.scrollY > 100);
+    });
+  </script>
 </body>
 </html>
