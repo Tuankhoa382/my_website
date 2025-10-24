@@ -36,8 +36,7 @@ def upload_file():
 @app.route('/gallery')
 def gallery():
     image_files = os.listdir(app.config['UPLOAD_FOLDER'])
-    image_paths = [f'/static/uploads/{img}' for img in image_files]
-    return render_template('gallery.html', images=image_paths, title="Thư viện công trình")
-
+    # ✅ chỉ lưu tên file thôi, không thêm /static/uploads
+    return render_template('gallery.html', images=image_files, title="Thư viện công trình")
 if __name__ == '__main__':
     app.run(debug=True)

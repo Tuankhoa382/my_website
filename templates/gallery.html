@@ -1,67 +1,62 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-    <style>
-        body {
-            font-family: "Segoe UI", sans-serif;
-            background-color: #f9fafc;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
+{% extends "base.html" %}
+{% block content %}
+<h2 class="fw-bold text-primary text-center mb-4">THƯ VIỆN CÔNG TRÌNH</h2>
 
-        h1 {
-            color: #007bff;
-            margin: 30px 0;
-            font-size: 40px;
-        }
+<div class="container">
+  <div class="row g-4 justify-content-center">
+    {% for img in images %}
+      <div class="col-lg-3 col-md-4 col-sm-6 text-center">
+        <div class="card shadow-sm border-0">
+          <a href="{{ url_for('static', filename='uploads/' ~ img) }}" data-bs-toggle="modal" data-bs-target="#imageModal" data-img="{{ url_for('static', filename='uploads/' ~ img) }}">
+            <img src="{{ url_for('static', filename='uploads/' ~ img) }}" class="card-img-top rounded" alt="Công trình {{ loop.index }}">
+          </a>
+        </div>
+      </div>
+    {% else %}
+      <p class="text-muted text-center mt-5">Chưa có ảnh nào được tải lên.</p>
+    {% endfor %}
+  </div>
+</div>
 
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            padding: 20px;
-        }
-
-        .gallery-item {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            overflow: hidden;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .gallery-item img {
-            width: 320px;
-            height: 220px;
-            object-fit: cover;
-            border-bottom: 2px solid #007bff;
-        }
-
-        .gallery-item p {
-            margin: 10px;
-            font-weight: 500;
-        }
-    </style>
-</head>
-<body>
-    <h1>THƯ VIỆN CÔNG TRÌNH</h1>
-
-    <div class="gallery">
-        {% for image in images %}
-            <div class="gallery-item">
-                <img src="{{ url_for('static', filename='uploads/' + image) }}" alt="{{ image }}">
-                <p>{{ image }}</p>
-            </div>
-        {% endfor %}
+<!-- Modal hiển thị ảnh lớn -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-dark">
+      <div class="modal-body text-center">
+        <img id="modalImage" src="" class="img-fluid rounded" alt="Hình công trình">
+      </div>
     </div>
-</body>
-</html>
+  </div>
+</div>
+
+<!-- Script cho hiệu ứng phóng to -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const imageModal = document.getElementById('imageModal');
+  imageModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    const imgSrc = button.getAttribute('data-img');
+    const modalImg = document.getElementById('modalImage');
+    modalImg.src = imgSrc;
+  });
+});
+</script>
+
+<style>
+  body {
+    background-color: #f7f9fc;
+  }
+  .card img {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+  h2 {
+    letter-spacing: 1px;
+  }
+</style>
+{% endblock %}
