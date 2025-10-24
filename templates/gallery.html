@@ -1,13 +1,67 @@
-{% extends "base.html" %}
-{% block content %}
-<h2 class="fw-bold text-primary text-center mb-4">THƯ VIỆN CÔNG TRÌNH</h2>
-<div class="row gallery">
-  {% for img in images %}
-    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-      <img src="{{ url_for('static', filename='uploads/' ~ img) }}" alt="Công trình {{ loop.index }}">
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background-color: #f9fafc;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007bff;
+            margin: 30px 0;
+            font-size: 40px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 320px;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .gallery-item p {
+            margin: 10px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <h1>THƯ VIỆN CÔNG TRÌNH</h1>
+
+    <div class="gallery">
+        {% for image in images %}
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='uploads/' + image) }}" alt="{{ image }}">
+                <p>{{ image }}</p>
+            </div>
+        {% endfor %}
     </div>
-  {% else %}
-    <p class="text-muted text-center">Chưa có ảnh nào được tải lên.</p>
-  {% endfor %}
-</div>
-{% endblock %}
+</body>
+</html>
