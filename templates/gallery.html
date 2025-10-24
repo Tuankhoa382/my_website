@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Thư viện hình ảnh công trình</h2>
-
-{% if images %}
-<div class="gallery">
-    {% for img in images %}
-        <img src="{{ img }}" alt="Công trình {{ loop.index }}">
-    {% endfor %}
+<h2 class="fw-bold text-primary text-center mb-4">THƯ VIỆN CÔNG TRÌNH</h2>
+<div class="row gallery">
+  {% for img in images %}
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+      <img src="{{ url_for('static', filename='uploads/' ~ img) }}" alt="Công trình {{ loop.index }}">
+    </div>
+  {% else %}
+    <p class="text-muted text-center">Chưa có ảnh nào được tải lên.</p>
+  {% endfor %}
 </div>
-{% else %}
-<p>Chưa có hình ảnh nào được tải lên.</p>
-{% endif %}
 {% endblock %}

@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Chào mừng đến với hệ thống quản lý công trình xây dựng</h2>
-<p>Tại đây bạn có thể tải lên và lưu trữ hình ảnh các công trình của công ty.</p>
-<a href="/upload" class="btn">Tải ảnh mới</a>
-<a href="/gallery" class="btn">Xem thư viện</a>
+<section class="text-center">
+  <h2 class="fw-bold text-primary mb-4">DỰ ÁN MỚI NHẤT</h2>
+  <div class="row gallery">
+    {% for img in images %}
+      <div class="col-md-4 mb-4">
+        <img src="{{ url_for('static', filename='uploads/' ~ img) }}" alt="Công trình {{ loop.index }}">
+      </div>
+    {% else %}
+      <p class="text-muted">Chưa có hình ảnh nào, hãy tải lên công trình đầu tiên!</p>
+    {% endfor %}
+  </div>
+  <a href="/upload" class="btn btn-outline-primary btn-lg">Tải Ảnh Mới</a>
+</section>
 {% endblock %}

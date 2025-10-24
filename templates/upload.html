@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Tải lên hình ảnh công trình</h2>
-<form method="POST" enctype="multipart/form-data">
-    <input type="file" name="file" accept="image/*" required>
-    <br><br>
-    <button type="submit" class="btn">Tải lên</button>
-</form>
+<div class="text-center">
+  <h2 class="fw-bold text-primary mb-4">TẢI ẢNH CÔNG TRÌNH</h2>
+  <form method="POST" enctype="multipart/form-data" class="mx-auto" style="max-width: 400px;">
+    <div class="mb-3">
+      <input type="file" name="file" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success px-4">Tải Lên</button>
+  </form>
+</div>
 {% endblock %}
